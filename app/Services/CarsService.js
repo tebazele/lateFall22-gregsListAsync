@@ -22,13 +22,14 @@ class CarsService {
 
   async getCars() {
     const res = await axios.get('https://bcw-sandbox.herokuapp.com/api/cars')
-    console.log('[GOT CARS]', res.data) //NOTE - REALLY import to check got data.
+    // console.log('[GOT CARS]', res.data) //NOTE - REALLY import to check got data.
     appState.cars = res.data.map(c => new Car(c))
   }
   async createCar(carData) {
     const res = await axios.post('https://bcw-sandbox.herokuapp.com/api/cars', carData)
     console.log('[POST CAR]', res.data);
     appState.cars = [...appState.cars, new Car(res.data)]
+
   }
   async removeCar(id) {
     const res = await axios.delete('https://bcw-sandbox.herokuapp.com/api/cars/' + id)
