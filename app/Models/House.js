@@ -1,19 +1,19 @@
 export class House {
-    constructor(data) {
-        this.bathrooms = data.bathrooms || 0
-        this.bedrooms = data.bedrooms || 0
-        this.createdAt = new Date(data.createdAt)
-        this.description = data.description || ''
-        this.id = data.id
-        this.imgUrl = data.imgUrl || ''
-        this.levels = data.levels || 0
-        this.price = data.price || 0
-        this.year = data.year || 0
+  constructor(data) {
+    this.bathrooms = data.bathrooms || 0
+    this.bedrooms = data.bedrooms || 0
+    this.createdAt = new Date(data.createdAt)
+    this.description = data.description || ''
+    this.id = data.id
+    this.imgUrl = data.imgUrl || ''
+    this.levels = data.levels || 0
+    this.price = data.price || 0
+    this.year = data.year || 0
 
-    }
+  }
 
-    get HouseTemplate() {
-        return `
+  get HouseTemplate() {
+    return `
         <div class="card col-3 m-2">
           <img src="${this.imgUrl}" class="card-img-top img-fluid" alt="home">
           <div class="card-body">
@@ -32,13 +32,13 @@ export class House {
             </div>
           </div>
         </div>`
-    }
+  }
 
-    static GetHouseFormTemplate(house) {
-        if (!house) {
-            house = new House({})
-        }
-        return `
+  static GetHouseFormTemplate(house) {
+    if (!house) {
+      house = new House({})
+    }
+    return `
         <form onsubmit="app.housesController.${house.id ? `editHouse('${house.id}')` : 'createHouse()'}">
           <div class="form-floating mb-3">
             <input type="number" class="form-control" id="levels" name="levels" placeholder="Home levels" value='${house.levels}' required>
@@ -71,5 +71,5 @@ export class House {
           <button type="submit" class="btn btn-success my-3">Submit</button>
           <button type="reset" class="btn btn-outline-danger my-3">Reset</button>
         </form>`
-    }
+  }
 }

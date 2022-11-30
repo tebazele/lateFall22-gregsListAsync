@@ -1,18 +1,18 @@
 export class Job {
-    constructor(data) {
-        // this.keys = data.keys
-        this.company = data.company || ''
-        this.createdAt = new Date(data.createdAt) || new Date
-        this.description = data.description || ''
-        this.hours = data.hours || 0
-        this.id = data.id
-        this.jobTitle = data.jobTitle || ''
-        this.rate = data.rate || 0
-        this.imgUrl = 'https://images.unsplash.com/photo-1553729459-efe14ef6055d?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2370&q=80'
-    }
+  constructor(data) {
+    // this.keys = data.keys
+    this.company = data.company || ''
+    this.createdAt = new Date(data.createdAt) || new Date
+    this.description = data.description || ''
+    this.hours = data.hours || 0
+    this.id = data.id
+    this.jobTitle = data.jobTitle || ''
+    this.rate = data.rate || 0
+    this.imgUrl = data.imgUrl || ''
+  }
 
-    get JobTemplate() {
-        return `<div class="col-4 p-4">
+  get JobTemplate() {
+    return `<div class="col-4 p-4">
         <div class="card">
           <img src="${this.imgUrl}" class="card-img-top"
             alt="job">
@@ -31,13 +31,13 @@ export class Job {
           </div>
         </div>
       </div>`
-    }
+  }
 
-    static JobFormTemplate(job) {
-        if (!job) {
-            job = new Job({})
-        }
-        return `<form onsubmit="app.jobsController.${job.id ? `editJob('${job.id}')` : 'createJob()'}">
+  static JobFormTemplate(job) {
+    if (!job) {
+      job = new Job({})
+    }
+    return `<form onsubmit="app.jobsController.${job.id ? `editJob('${job.id}')` : 'createJob()'}">
         <div class="form-floating mb-3">
             <input type="text" class="form-control" id="job-title" name="jobTitle" placeholder="Job Title" value='${job.jobTitle}' required>
             <label for="job-title">Job Title</label>
@@ -58,9 +58,13 @@ export class Job {
             <input type="number" class="form-control" id="rate" name="rate" placeholder="rate" value='${job.rate}' required>
             <label for="rate">rate</label>
           </div>
+          <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="image" name="imgUrl" placeholder="image" value='${job.imgUrl}' required>
+            <label for="image">Image</label>
+          </div>
           <button type="submit" class="btn btn-success my-3">Submit</button>
           <button type="reset" class="btn btn-outline-danger my-3">Reset</button>
         </form>
         `
-    }
+  }
 }

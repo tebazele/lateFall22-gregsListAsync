@@ -8,7 +8,7 @@ class JobsService {
         // axios.get the data
         try {
             // @ts-ignore
-            let response = await axios.get('https://bcw-sandbox.herokuapp.com/api/jobs')
+            let response = await axios.get('http://localhost:3000/api/jobs')
             console.log('got jobs', response.data);
             appState.jobs = response.data.map(job => new Job(job))
             console.log(appState.jobs);
@@ -25,7 +25,7 @@ class JobsService {
     async createJob(jobData) {
         try {
             // @ts-ignore
-            let res = await axios.post('https://bcw-sandbox.herokuapp.com/api/jobs', jobData)
+            let res = await axios.post('http://localhost:3000/api/jobs', jobData)
             // console.log('post jobs', res.data)
             let newJob = new Job(jobData)
             appState.jobs = [...appState.jobs, newJob]
@@ -37,7 +37,7 @@ class JobsService {
     async editJob(jobData, id) {
         try {
             // @ts-ignore
-            let res = await axios.put('https://bcw-sandbox.herokuapp.com/api/jobs/' + id, jobData)
+            let res = await axios.put('http://localhost:3000/api/jobs/' + id, jobData)
             console.log('edited job', res.data);
             let index = appState.jobs.findIndex(j => j.id == id)
             appState.jobs.splice(index, 1, new Job(res.data))
@@ -50,7 +50,7 @@ class JobsService {
     async removeJob(id) {
         try {
             // @ts-ignore
-            let res = await axios.delete('https://bcw-sandbox.herokuapp.com/api/jobs/' + id)
+            let res = await axios.delete('http://localhost:3000/api/jobs/' + id)
             console.log('DELETE job', res.data);
             appState.jobs = appState.jobs.filter(j => j.id != id)
         } catch (error) {

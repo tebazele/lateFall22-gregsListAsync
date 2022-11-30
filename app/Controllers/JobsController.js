@@ -59,6 +59,7 @@ export class JobsController {
             let form = window.event.target
             let jobData = getFormData(form)
             await jobsService.createJob(jobData)
+            form.reset()
         } catch (error) {
 
         }

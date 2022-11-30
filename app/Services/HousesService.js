@@ -5,7 +5,7 @@ import { Pop } from "../Utils/Pop.js";
 class HousesService {
     async editHouse(houseData, id) {
         // @ts-ignore
-        const response = await axios.put('https://bcw-sandbox.herokuapp.com/api/houses/' + id, houseData)
+        const response = await axios.put('http://localhost:3000/api/houses/' + id, houseData)
         console.log('edit house', response.data);
         let editedHouse = response.data
         // edit house in my houses array
@@ -22,7 +22,7 @@ class HousesService {
     async removeHouse(id) {
         // console.log('removing house', id)
         // @ts-ignore
-        const response = await axios.delete('https://bcw-sandbox.herokuapp.com/api/houses/' + id)
+        const response = await axios.delete('http://localhost:3000/api/houses/' + id)
         console.log('DELETE HOUSE ', response.data);
         Pop.toast('car deleted', 'success')
         appState.houses = appState.houses.filter(h => h.id != id)
@@ -30,7 +30,7 @@ class HousesService {
     async createHouse(houseData) {
         console.log('creating house')
         // @ts-ignore
-        const response = await axios.post('https://bcw-sandbox.herokuapp.com/api/houses', houseData)
+        const response = await axios.post('http://localhost:3000/api/houses', houseData)
         console.log('POST HOUSE', response.data)
         let newestHouse = new House(response.data)
         appState.houses.push(newestHouse)
@@ -38,7 +38,7 @@ class HousesService {
     }
     async getHouses() {
         // @ts-ignore
-        const response = await axios.get('https://bcw-sandbox.herokuapp.com/api/houses')
+        const response = await axios.get('http://localhost:3000/api/houses')
         // console.log('got houses', response.data)
         appState.houses = response.data.map(house => new House(house))
     }
